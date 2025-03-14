@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
+import {motion}  from 'framer-motion'
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,19 +15,59 @@ const Navbar = () => {
     setIsOpen(false);
   }
 
+  const handleScroll = ()=>{
+    const section = ['home', 'services', 'about', 'pricing','testimonial'];
+    const scrollPosition = window.scrollY + 100;
+
+    section.forEach(section=>{
+       const element = document.getElementById(section);
+       if(element){
+            const offsetTop = element.offsetTop;
+            const height = element.offsetHeight;
+            if(scrollPosition>=offsetTop && scrollPosition< offsetTop + height){
+                setActiveSection(section)
+            }
+       }
+    });
+  }
+
+  useEffect(()=>{
+    window.addEventListener('scroll', handleScroll);
+    return ()=>{
+       window.removeEventListener('scroll', handleScroll);
+    }
+  },[]);
+
+  const handleScrollTo = (targetId)=>{
+    const targetElement = document.getElementById(targetId);
+    if(targetElement){
+        window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+
+        })
+    }
+  }
+
+
+
   const navlinks = (
     <ul className="flex flex-col md:flex-row lg:space-x-8 sm:space-x-4 space-y-2 md:space-y-0 p-4 md:p-0">
       <li>
-        <a
+        <motion.a
+          whileHover={{scale: (1.1)}}
+          whileTap={{scale:(.90)}}
+
           href="#home"
           onClick={(e)=>{
             e.preventDefault();
             handleCloseBtn();
+            handleScrollTo('home')
           }}
           className={`text-white ${activeSection === "home" ? "isActive" : ""}`}
         >
           Home
-        </a>
+        </motion.a>
       </li>
       <li>
         <a
