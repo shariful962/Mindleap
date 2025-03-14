@@ -5,8 +5,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  const handleToggleBtn = ()=>{
-    setIsOpen(!isOpen)
+  const handleToggleBtn = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleCloseBtn = ()=>{
+    setIsOpen(false);
   }
 
   const navlinks = (
@@ -14,6 +18,10 @@ const Navbar = () => {
       <li>
         <a
           href="#home"
+          onClick={(e)=>{
+            e.preventDefault();
+            handleCloseBtn();
+          }}
           className={`text-white ${activeSection === "home" ? "isActive" : ""}`}
         >
           Home
@@ -22,7 +30,13 @@ const Navbar = () => {
       <li>
         <a
           href="#services"
-          className={`text-white ${activeSection === "services" ? "isActive" : ""}`}
+          onClick={(e)=>{
+            e.preventDefault();
+            handleCloseBtn();
+          }}
+          className={`text-white ${
+            activeSection === "services" ? "isActive" : ""
+          }`}
         >
           Services
         </a>
@@ -30,7 +44,13 @@ const Navbar = () => {
       <li>
         <a
           href="#about"
-          className={`text-white ${activeSection === "about" ? "isActive" : ""}`}
+          onClick={(e)=>{
+            e.preventDefault();
+            handleCloseBtn();
+          }}
+          className={`text-white ${
+            activeSection === "about" ? "isActive" : ""
+          }`}
         >
           About Us
         </a>
@@ -38,7 +58,13 @@ const Navbar = () => {
       <li>
         <a
           href="#pricing"
-          className={`text-white ${activeSection === "pricing" ? "isActive" : ""}`}
+          onClick={(e)=>{
+            e.preventDefault();
+            handleCloseBtn();
+          }}
+          className={`text-white ${
+            activeSection === "pricing" ? "isActive" : ""
+          }`}
         >
           Pricing
         </a>
@@ -46,7 +72,13 @@ const Navbar = () => {
       <li>
         <a
           href="#testimonial"
-          className={`text-white ${activeSection === "testimonial" ? "isActive" : ""}`}
+          onClick={(e)=>{
+            e.preventDefault()
+            handleCloseBtn();
+          }}
+          className={`text-white ${
+            activeSection === "testimonial" ? "isActive" : ""
+          }`}
         >
           Testimoninal
         </a>
@@ -66,36 +98,55 @@ const Navbar = () => {
         {/* nav-items  */}
         <div className="hidden md:flex flex-grow justify-center">
           <nav>{navlinks}</nav>
-
         </div>
         {/* button  */}
 
         <div className="hidden md:block">
-            <a href="#contact"
-                className="text-white bg-Primary hover:bg-Primary/90 py-2 px-4 rounded-lg"
-            > Contact Us
-            </a>
+          <a
+            href="#contact"
+            className="text-white bg-Primary hover:bg-Primary/90 py-2 px-4 rounded-lg"
+          >
+            {" "}
+            Contact Us
+          </a>
         </div>
 
         {/* humberger menu  */}
         <div className="block md:hidden">
-            <button
+          <button
             onClick={handleToggleBtn}
-            className={`text-white focus:outline-none ${isOpen ? "border border-white"  : ""}`} >
+            className={`text-white focus:outline-none ${
+              isOpen ? "border border-white" : ""
+            }`}
+          >
             <CiMenuFries className="size-6" />
-            </button>
+          </button>
         </div>
-    
       </div>
-        {/* mobile nav items  */}
+      {/* mobile nav items  */}
 
-        {isOpen && (
-            <nav>
-                <ul>
-                    {navlinks.props.children}
-                </ul>
-            </nav>
-        )}
+      {isOpen && (
+        <nav>
+          <ul className="flex flex-col space-y-2">{navlinks.props.children}
+
+          <li className="mt-4">
+            <a
+              href="#contact"
+              onClick={(e) =>{
+                e.preventDefault();
+                handleCloseBtn();
+              }}
+              className="text-white bg-Primary hover:bg-Primary/90 py-2 px-4 rounded-lg"
+            >
+              Contact Us
+            </a>
+          </li>
+
+          </ul>
+
+          
+        </nav>
+      )}
     </header>
   );
 };
