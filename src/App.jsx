@@ -1,17 +1,16 @@
 import './App.css'
+
 import Navbar from './component/Navbar'
-import Home from './component/Home'
-import Services from './component/Services'
-import About from './component/About'
+import Hero from './component/Hero'
+
 
 function App() {
  
   return (
     <div className='font-main'>
       <Navbar/>
-      <Home/>
-      <Services/>
-      <About />      
+      <Hero />
+            
     </div>
   )
 }

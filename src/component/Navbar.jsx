@@ -16,10 +16,10 @@ const Navbar = () => {
   }
 
   const handleScroll = ()=>{
-    const section = ['home', 'services', 'about', 'pricing','testimonial'];
+    const sections = ['home', 'services', 'about', 'pricing','testimonial'];
     const scrollPosition = window.scrollY + 100;
 
-    section.forEach(section=>{
+    sections.forEach(section=>{
        const element = document.getElementById(section);
        if(element){
             const offsetTop = element.offsetTop;
@@ -55,14 +55,13 @@ const Navbar = () => {
     <ul className="flex flex-col md:flex-row lg:space-x-8 sm:space-x-4 space-y-2 md:space-y-0 p-4 md:p-0">
       <li>
         <motion.a
-          whileHover={{scale: (1.1)}}
-          whileTap={{scale:(.90)}}
-
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
           href="#home"
           onClick={(e)=>{
             e.preventDefault();
             handleCloseBtn();
-            handleScrollTo('home')
+            handleScrollTo('home');
           }}
           className={`text-white ${activeSection === "home" ? "isActive" : ""}`}
         >
@@ -70,60 +69,75 @@ const Navbar = () => {
         </motion.a>
       </li>
       <li>
-        <a
+        <motion.a
+          
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
           href="#services"
           onClick={(e)=>{
             e.preventDefault();
             handleCloseBtn();
+            handleScrollTo('services');
           }}
           className={`text-white ${
             activeSection === "services" ? "isActive" : ""
           }`}
         >
           Services
-        </a>
+        </motion.a>
       </li>
       <li>
-        <a
+        <motion.a
+          
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
           href="#about"
           onClick={(e)=>{
             e.preventDefault();
             handleCloseBtn();
+            handleScrollTo('about')
           }}
           className={`text-white ${
             activeSection === "about" ? "isActive" : ""
           }`}
         >
           About Us
-        </a>
+        </motion.a>
       </li>
       <li>
-        <a
+        <motion.a
+          
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
           href="#pricing"
           onClick={(e)=>{
             e.preventDefault();
             handleCloseBtn();
+            handleScrollTo('pricing');
           }}
           className={`text-white ${
             activeSection === "pricing" ? "isActive" : ""
           }`}
         >
           Pricing
-        </a>
+        </motion.a>
       </li>
       <li>
-        <a
+        <motion.a
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
           href="#testimonial"
           onClick={(e)=>{
             e.preventDefault()
             handleCloseBtn();
+            handleScrollTo('testimonial');
           }}
           className={`text-white ${
             activeSection === "testimonial" ? "isActive" : ""
           }`}
         >
           Testimoninal
-        </a>
+        </motion.a>
       </li>
     </ul>
   );
@@ -154,6 +168,7 @@ const Navbar = () => {
         </div>
 
         {/* humberger menu  */}
+        
         <div className="block md:hidden">
           <button
             onClick={handleToggleBtn}
@@ -165,6 +180,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+
       {/* mobile nav items  */}
 
       {isOpen && (
