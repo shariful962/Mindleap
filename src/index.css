@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+  --font-main: "Poppins", sans-serif;
+  --font-second: "Syne", sans-serif;
+  --color-Primary: #06a055;
   --color-clifford: #da373d;
+  --color-heroBg: #0e1122;
+  --color-para: rgb(0 0 0 /80%);
+ 
 }
